@@ -24,8 +24,9 @@ int main(int argc, char** argv) {
 			if(i % j == 0)
 			{
 				count++;
-			}
-		}	
+			}			
+	    }
+			
 		if(count > 2)
 		{
 			count = 0;
