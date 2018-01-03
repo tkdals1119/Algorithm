@@ -5,7 +5,6 @@ int main(int argc, char *argv[])
 {
 	char cha[100];
 	int i=0;
-	int count = 0;
 
 	scanf("%s", cha);
 
@@ -25,8 +24,5 @@ int main(int argc, char *argv[])
 		{
 			break;
 		}
-		
-
-		
 	}
 }
