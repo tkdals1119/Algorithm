@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
 	int num, i, j, str;
 	int res = 1;
-	char ch[1000000];
+	char ch[20];
 	int arr[10] = { 0 };
 
 	for (i = 0; i < 3; i++)
