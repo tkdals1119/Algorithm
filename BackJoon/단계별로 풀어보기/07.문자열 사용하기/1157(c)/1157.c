@@ -6,43 +6,48 @@
 int main(int argc, char *argv[])
 {
 	char ch[1000000];
+	char alpha[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+	int basic[26] = { 0 };
 	char max_char;
-	int str = 0, i = 0, j = 0, max = 0, count=1;
+	int str = 0, i = 0, j = 0, max = 0, max_index = 0;
 
 	scanf("%s", ch);
 	str = strlen(ch);
 
 	for (i = 0; i < str; i++)
-	{	
-		if (ch[i] >= 'A' && ch[i] <= 'Z')
+	{
+		if (ch[i] >= 'A' && ch[i] <= 'Z') ch[i] += 32;
+		
+		for (j = 0; j < 26; j++)
 		{
-			ch[i] += 32;
-		}
+			if (ch[i] == alpha[j]) basic[j]++;	
+		}		
 	}
 
-	for (i = 0; i < str; i++)
+	for (i = 0; i < 26; i++)
 	{
-		count = 1;
-		for (j = 0; j < str; j++)
+		if (basic[i] >= max)
 		{
-			if (ch[i] == ch[j] && i!=j)
+			max = basic[i];
+			max_char = alpha[i];
+			max_index = i;
+		}
+
+		if (i == 25)
+		{
+			for (j = 0; j < 26; j++)
 			{
-				count++;
-				ch[j] = ' ';
+				if (j != max_index && basic[j] == basic[max_index])
+				{
+					max_char = '?';
+					break;
+				}
 			}
 		}
-
-		if (max < count)
-		{
-			max = count;
-			max_char = ch[i];
-		}
-		else if (max == count && max_char != ch[i])
-		{
-			max_char = '?';
-		}
 	}
-
+ 
+	if (max_char >= 'a' && max_char <= 'z') max_char -= 32;
+	
 	printf("%c\n", max_char);
 
 	return 0;
