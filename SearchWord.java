@@ -11,7 +11,7 @@ public class SearchWord {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try{
-			File file = new File("C:\\Users\\SAMSUNG\\Desktop\\sm\\test.txt");
+			File file = new File("file location");
 			FileReader filereader = new FileReader(file);
 			BufferedReader bufReader = new BufferedReader(filereader);
 			String line = "";
