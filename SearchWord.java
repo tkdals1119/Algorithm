@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
 public class SearchWord {
 
 	public static void main(String[] args) {
@@ -15,29 +14,44 @@ public class SearchWord {
 			FileReader filereader = new FileReader(file);
 			BufferedReader bufReader = new BufferedReader(filereader);
 			String line = "";
+			String past_name = "";
 			String res = "";
+			int line_count = 0;
 			int count = 0;
 			int index = 1;
-			String name[] = {"name1", "name2", "name3", "name4", "name5"};
-			int[] count_name = new int[5];
+
+			String name[] = {"name1", "name2", "name3", "name4"};
+			int[] count_name = new int[4];
 			Arrays.fill(count_name, 0);
 			
 			while((line=bufReader.readLine())!=null)
 			{
-				if(line.matches(".*word.*"))
+				line_count++;
+				if(line_count>4 && !line.isEmpty())
 				{
-					count++;
-					while(line.charAt(index)!=']')
-					{					
-						res += line.charAt(index);
-						index++;
-					}					
-					for(int i=0; i<name.length; i++)
+					if(line.charAt(0)!='[') res = past_name;
+					else
 					{
-						if(name[i].equals(res)) count_name[i]++;
+						res="";
+						index=1;
+						while(line.charAt(index)!=']')
+						{			
+							res += line.charAt(index);			
+							index++;
+						}
 					}
+
+					if(line.contains("asdf"))
+					{					
+						count++;									
+						for(int i=0; i<name.length; i++)
+						{
+							if(name[i].equals(res)) count_name[i]++;
+						}
+					}
+					past_name = res;
 				}
-			}
+			}			
 			System.out.println("ÃÑ È½¼ö: " + count);
 			for(int i=0; i<count_name.length; i++)
 			{
@@ -49,5 +63,4 @@ public class SearchWord {
 			System.out.println(e);
 		}
 	}
-
 }
